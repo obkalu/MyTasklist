@@ -1,0 +1,41 @@
+<form class="well" (submit)="addTask($event)">
+    <div class=" row form-group">
+        <div class="col-xs-10 col-sm-10 col-md-10">
+            <input type="text" [(ngModel)]="title" name="title" class="form-control" placeholder="Add Task" />
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2">
+            <input type="button" (click)="addTask($event)" value="Add Task" class="btn btn-primary"/>
+        </div>
+    </div>
+</form>
+
+<!-- List of Tasks -->
+<div class="task-list"> <!--style=" border:1px solid #cccccc;margin:0 10px 0 20px; padding:0 10px 0 20px;"-->
+    <!-- We make a row of divs containing 4-columns using bootstrap classes -->
+
+    <div class="row" *ngFor="let task of tasks; let i=index" style="margin:20px;padding:10px;background-color:#ffffff;border-bottom:1px dotted #cccccc;">
+        <div class="col-xs-1 col-sm-1 col-md-1">
+            {{i+1}}.            
+        </div>          
+        <div class="col-xs-1 col-sm-1 col-md-1">
+            <input type="checkbox" [checked]="task.isDone" (click)='updateTaskStatus(task)' />
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6">
+            <span [ngSwitch]="task.isDone">
+                <span *ngSwitchCase='true'>
+                    <span style="text-decoration:line-through;">
+                        {{task.title}}
+                    </span>
+                </span>
+                <span *ngSwitchCase='false'>
+                    <span style="text-decoration:none;">
+                        {{task.title}}
+                    </span>
+                </span>  
+            </span>              
+        </div>
+        <div class="col-xs-4 col-sm-4 col-md-4">
+            <input type="button" (click)="deleteTask(task._id)" value="Delete Task" class="btn btn-danger"/>
+        </div>
+    </div>
+</div>
