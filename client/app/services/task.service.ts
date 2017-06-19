@@ -1,36 +1,39 @@
-import { Injectable } from '@angular/core';
-import { Http, Headers } from '@angular/http';
-import 'rxjs/add/operator/map';
+import { Injectable } from "@angular/core";
+import { Http, Headers } from "@angular/http";
+import "rxjs/add/operator/map";
+import { Observable } from "rxjs/Observable";
+import { Task } from "../../view_model/Task";
 
 @Injectable()
-export class TaskService{
-    constructor(private http : Http){
-        console.log('Task service is initialized!... ');
+export class TaskService {
+    constructor(private http : Http) {
+        console.log("Task service is initialized and Http object injected! ... ");
     }
 
-    // Retrieves all tasks
-    getTasks(){
-        return this.http.get('/api/tasks').map(res => res.json());
+    // retrieves all tasks
+    getTasks(): Observable<Task[]> {
+        return this.http.get("/api/tasks").map(res => res.json());
     }
 
-    // Adds a new Task
-    addTask(newTask){
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.post('/api/task', JSON.stringify(newTask), {headers:headers})
+    // adds a new Task
+    addTask(newTask: Task): Observable<Task> {
+        var headers: Headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        return this.http.post("/api/task", JSON.stringify(newTask), {headers:headers})
             .map(res => res.json());
     }
 
-    // Deletes a selected task given its id
-    deleteTask(id){
-        return this.http.delete('/api/task/'+id).map(res => res.json());
+    // deletes a selected task given its id
+    deleteTask(id: string): Observable<any> {
+        return this.http.delete("/api/task/"+id).map(res => res.json());
     }
 
-    updateTaskStatus(updatedTask){
+    // updates the given task
+    updateTaskStatus(updatedTask: Task): Observable<any> {
         console.log(updatedTask);
-        var headers = new Headers();
-        headers.append('Content-Type', 'application/json');
-        return this.http.put('/api/task/'+updatedTask._id, JSON.stringify(updatedTask), {headers:headers})
+        var headers: Headers = new Headers();
+        headers.append("Content-Type", "application/json");
+        return this.http.put("/api/task/"+updatedTask._id, JSON.stringify(updatedTask), {headers:headers})
             .map(res => res.json());
     }
 }

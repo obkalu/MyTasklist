@@ -8,12 +8,12 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var platform_browser_1 = require('@angular/platform-browser');
-var http_1 = require('@angular/http');
-var forms_1 = require('@angular/forms');
-var app_component_1 = require('./app.component');
-var tasks_component_1 = require('./components/tasks/tasks.component');
+var core_1 = require("@angular/core");
+var platform_browser_1 = require("@angular/platform-browser");
+var http_1 = require("@angular/http");
+var forms_1 = require("@angular/forms");
+var app_component_1 = require("./app.component");
+var tasks_component_1 = require("./components/tasks/tasks.component");
 var AppModule = (function () {
     function AppModule() {
     }

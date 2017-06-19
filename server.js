@@ -1,6 +1,6 @@
 // Load modules/libraries and assign them to specific references to be used later
 var express = require('express');
-var path = require('path'); // to enable processing/manipulation of filesystem paths
+var path = require('path'); // to enable processing & manipulation of filesystem paths
 var bodyParser = require('body-parser');
 
 // Create and set variables to constitute urls that will exist in the app
@@ -40,8 +40,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 
 // Setup the routes
-app.use('/', index); // the app's root url should point to the index variable route we've defined above (line 8)
-app.use('/api', tasks); // any url prefixed with /api should go to the tasks variable route, also def above, line 9
+app.use('/', index); // the app's root url should point to the index variable route we've defined above (line 10)
+app.use('/api', tasks); // any url prefixed with /api should go to the tasks variable route, also def above (line 11)
 
 // Set the app to begin listening on the defined port and with a callback function to invoke when it starts
 app.listen(port, hostname, function(){
